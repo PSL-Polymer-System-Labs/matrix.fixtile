@@ -1,0 +1,599 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#f3f3f0" />
+  <meta name="color-scheme" content="light" />
+  <meta name="robots" content="index,follow" />
+  <meta name="description" content="FIXTILE MATRIX — промышленная плитка и плиточные системы для химических, температурных и механических нагрузок." />
+  <title>FIXTILE MATRIX — промышленная плиточная система</title>
+  <style>
+    :root{
+      --ink:#0a0a0a;
+      --paper:#f6f6f3;
+      --white:#fff;
+      --muted:#6d6d69;
+      --line:#d9d9d4;
+      --soft:#ecece8;
+      --accent:#a7895b;
+      --max:1480px;
+      --pad:clamp(22px,4vw,64px);
+      --header:72px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;background:var(--paper)}
+    body{margin:0;color:var(--ink);background:var(--paper);font-family:Inter,"Helvetica Neue",Arial,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+    img{display:block;max-width:100%}
+    a{color:inherit;text-decoration:none}
+    button,input,textarea{font:inherit}
+    button{color:inherit}
+    ::selection{background:#111;color:#fff}
+
+    .shell{width:min(calc(100% - 2*var(--pad)),var(--max));margin-inline:auto}
+    .hairline{border-top:1px solid var(--line)}
+    .eyebrow{display:flex;align-items:center;gap:11px;margin:0 0 18px;font-size:11px;line-height:1;text-transform:uppercase;letter-spacing:.18em;font-weight:800;color:var(--muted)}
+    .eyebrow:before{content:"";width:28px;height:1px;background:currentColor}
+    .display{font-size:clamp(54px,7.6vw,124px);font-weight:900;line-height:.82;letter-spacing:-.075em;text-transform:uppercase;margin:0}
+    .section-title{font-size:clamp(38px,4.5vw,76px);font-weight:900;line-height:.9;letter-spacing:-.055em;text-transform:uppercase;margin:0}
+    .btn{border:0;display:inline-flex;align-items:center;justify-content:center;gap:18px;min-height:48px;padding:0 20px;background:#111;color:#fff;font-size:12px;font-weight:800;cursor:pointer;transition:transform .2s ease,background .2s ease}
+    .btn:hover{transform:translateY(-2px);background:#292929}
+    .btn.light{background:#fff;color:#111}
+    .arrow{font-size:18px;line-height:1}
+    .link{display:inline-flex;align-items:center;gap:12px;font-size:12px;font-weight:800;border-bottom:1px solid currentColor;padding-bottom:5px}
+
+    .contact-inline{display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;font-size:11px;font-weight:750;line-height:1.25}
+    .contact-inline a{border-bottom:1px solid #aaa;padding-bottom:2px;transition:border-color .18s ease,opacity .18s ease}
+    .contact-inline a:hover{border-color:#111;opacity:.68}
+    .header-contacts{display:flex;align-items:center;gap:14px;font-size:10px;font-weight:800;white-space:nowrap}
+    .header-contacts a{border-bottom:1px solid transparent;padding-bottom:2px}
+    .header-contacts a:hover{border-color:#111}
+    .mobile-contacts{margin-top:auto;padding-top:28px;display:grid;gap:10px;font-size:16px;line-height:1.25}
+    .mobile-contacts a{font-size:16px!important;font-weight:650!important;letter-spacing:0!important;padding:0 0 7px!important;border-bottom:1px solid #303030!important}
+    .cta-contacts{display:grid;gap:13px;margin-top:6px;font-size:15px;line-height:1.25}
+    .cta-contacts a{width:max-content;max-width:100%;border-bottom:1px solid #5f5f5f;padding-bottom:3px;transition:border-color .18s ease,color .18s ease}
+    .cta-contacts a:hover{border-color:#fff;color:#fff}
+
+    /* Header */
+    .header{position:fixed;inset:0 0 auto;z-index:100;height:var(--header);background:rgba(247,247,244,.9);backdrop-filter:blur(18px);border-bottom:1px solid rgba(20,20,20,.10)}
+    .header-inner{height:100%;display:flex;align-items:center;gap:34px}
+    .brand{display:flex;align-items:center;font-weight:950;font-size:26px;letter-spacing:-.06em;margin-right:auto}
+    .brand-sub{font-size:9px;line-height:1.08;letter-spacing:.05em;margin-left:13px;padding-left:13px;border-left:1px solid #999;text-transform:uppercase;font-weight:800}
+    .nav{display:flex;gap:30px;font-size:11px;font-weight:700;color:#353535}
+    .nav a{position:relative;padding:9px 0}
+    .nav a:after{content:"";position:absolute;left:0;right:100%;bottom:3px;height:1px;background:#111;transition:right .2s ease}
+    .nav a:hover:after{right:0}
+    .header-cta{height:40px;padding:0 16px;font-size:11px}
+    .menu{display:none;width:44px;height:44px;border:0;background:none;position:relative;padding:0}
+    .menu i{position:absolute;left:11px;right:11px;height:1.5px;background:#111;transition:.25s}
+    .menu i:first-child{top:17px}.menu i:last-child{top:25px}
+    .menu.open i:first-child{transform:translateY(4px) rotate(45deg)}.menu.open i:last-child{transform:translateY(-4px) rotate(-45deg)}
+    .mobile-nav{display:none;position:fixed;inset:var(--header) 0 0;background:#111;color:#fff;z-index:90;padding:32px var(--pad) 48px;flex-direction:column}
+    .mobile-nav.open{display:flex}
+    .mobile-nav a{font-size:clamp(32px,9vw,52px);font-weight:900;letter-spacing:-.05em;padding:12px 0;border-bottom:1px solid #303030}
+    .mobile-nav .btn{margin-top:auto;width:100%}
+
+    /* Hero */
+    .hero{padding-top:var(--header);min-height:100svh;background:#f2f2ef;position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+    .hero:before{content:"";position:absolute;inset:0;background:
+      linear-gradient(90deg,transparent 49.95%,rgba(0,0,0,.08) 50%,transparent 50.05%),
+      linear-gradient(0deg,transparent 49.95%,rgba(0,0,0,.045) 50%,transparent 50.05%);
+      background-size:260px 260px;mask-image:linear-gradient(90deg,transparent 0,transparent 42%,#000 60%,#000 100%);opacity:.45}
+    .hero:after{content:"";position:absolute;right:-9vw;top:8%;width:68vw;height:82%;background:radial-gradient(circle at 46% 45%,rgba(255,255,255,.98) 0 10%,rgba(205,205,200,.55) 34%,rgba(155,155,150,.24) 57%,transparent 76%);filter:blur(2px)}
+    .hero-inner{position:relative;z-index:2;min-height:calc(100svh - var(--header));display:grid;grid-template-columns:.92fr 1.08fr;align-items:center;gap:24px;padding-block:56px 34px}
+    .hero-copy{align-self:center;max-width:720px}
+    .hero-copy .display{max-width:760px}
+    .hero-sub{margin:12px 0 0;font-size:clamp(18px,1.65vw,26px);font-weight:650;letter-spacing:-.025em}
+    .hero-desc{max-width:520px;margin:20px 0 0;color:var(--muted);font-size:15px;line-height:1.55}
+    .metrics{display:grid;grid-template-columns:repeat(4,minmax(110px,1fr));margin-top:34px;border-top:1px solid #c9c9c3;border-bottom:1px solid #c9c9c3}
+    .metric{padding:17px 18px 16px 0;border-right:1px solid #c9c9c3}
+    .metric:not(:first-child){padding-left:18px}
+    .metric:last-child{border-right:0}
+    .metric strong{display:block;font-size:clamp(21px,2vw,31px);letter-spacing:-.055em;line-height:1}
+    .metric span{display:block;margin-top:7px;color:#73736f;font-size:10px;line-height:1.25}
+    .hero-actions{display:flex;align-items:center;gap:30px;margin-top:28px}
+    .hero-stage{height:min(71vh,760px);min-height:520px;position:relative;display:block}
+    .hero-stage:before{content:"";position:absolute;width:64%;height:14%;left:20%;bottom:13%;background:rgba(0,0,0,.22);filter:blur(34px);border-radius:50%;transform:rotate(-7deg)}
+    .hero-product{width:min(86%,690px);max-height:86%;object-fit:contain;filter:drop-shadow(0 28px 24px rgba(0,0,0,.18));position:absolute;left:50%;top:2%;transform:translateX(-50%) rotate(-2deg);z-index:2;animation:float 5.8s ease-in-out infinite}
+     float{50%{transform:rotate(-1deg) translateY(-9px)}}
+    .hero-note{position:absolute;top:13%;right:2%;padding-left:18px;border-left:1px solid #111;font-size:10px;line-height:1.22;font-weight:850;text-transform:uppercase;letter-spacing:.05em}
+    .hero-index{position:absolute;right:1%;bottom:8%;display:flex;gap:18px;align-items:center;font-size:10px;font-weight:800}
+    .hero-index .line{width:40px;height:1px;background:#111}
+
+    /* Formats */
+    .formats{background:#fff;padding:68px 0 0;position:relative;overflow:hidden}
+    .formats:before{content:"";position:absolute;width:300px;height:300px;left:-120px;top:100px;border:1px solid #e8e8e3;transform:rotate(45deg)}
+    .formats-head{display:flex;align-items:flex-start;justify-content:space-between;gap:40px;margin-bottom:34px}
+    .formats-head .section-title{font-size:clamp(34px,4vw,62px)}
+    .formats-grid{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+    .format-media{flex:1;display:grid;place-items:center;padding:38px 24px 12px;border-bottom:1px solid var(--line);background:#f5f5f1;overflow:hidden}.format-media img{width:min(82%,280px);max-height:230px;object-fit:contain;filter:drop-shadow(0 24px 18px rgba(0,0,0,.12));transition:transform .45s cubic-bezier(.2,.75,.25,1)}.format-info{padding:22px 24px 24px}.format-info b{font-size:16px;text-transform:uppercase;letter-spacing:-.02em;display:block}.format-info span{font-size:10px;color:var(--muted);margin-top:6px;display:block}
+    .format-card{position:relative;display:flex;flex-direction:column;border-right:1px solid var(--line);overflow:hidden;background:#fafaf8;cursor:default;transition:background .2s ease;min-height:420px}
+    .format-card:last-child{border-right:0}
+    .format-card:hover{background:#f0f0ec}
+    .fake-tile{position:absolute;left:50%;top:43%;width:58%;aspect-ratio:1;background:url('assets/matrix-surface-texture.webp') center/cover;border:1px solid rgba(0,0,0,.09);box-shadow:10px 12px 18px rgba(0,0,0,.12);transform:translate(-50%,-50%) rotate(-9deg) skewY(-3deg)}
+    .fake-tile.rect{aspect-ratio:2/1;width:74%;transform:translate(-50%,-50%) rotate(8deg) skewY(-3deg)}
+    
+
+    /* Systems */
+    .systems{background:#fff;padding:88px 0 94px}
+    .systems-top{display:grid;grid-template-columns:.75fr 1.25fr;gap:52px;align-items:end;margin-bottom:28px}
+    .systems-top p{margin:0;max-width:700px;color:var(--muted);font-size:13px;line-height:1.55}
+    .system-tabs{display:grid;grid-template-columns:1fr 1fr;max-width:840px;border:1px solid var(--line);margin-bottom:18px}
+    .system-tab{border:0;background:#f6f6f3;min-height:58px;padding:0 24px;text-align:left;display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:center;cursor:pointer;border-right:1px solid var(--line)}
+    .system-tab:last-child{border-right:0}
+    .system-tab .cube{width:22px;height:22px;background:linear-gradient(145deg,#e6e6e2 0 50%,#b8b8b2 51%);transform:rotate(30deg) skew(-8deg)}
+    .system-tab b{font-size:18px;letter-spacing:-.04em}.system-tab small{display:block;color:#777;font-size:9px;text-transform:uppercase;letter-spacing:.08em;margin-top:3px}
+    .system-tab.active{background:#111;color:#fff}.system-tab.active small{color:#aaa}
+    .system-grid{display:grid;grid-template-columns:.85fr .8fr 1.05fr;min-height:560px;border:1px solid var(--line)}
+    .layers{display:grid;place-items:center;background:#f7f7f4;border-right:1px solid var(--line);position:relative;overflow:hidden}
+    .layers:before{content:"";position:absolute;inset:0;background-image:linear-gradient(#ebebe7 1px,transparent 1px),linear-gradient(90deg,#ebebe7 1px,transparent 1px);background-size:44px 44px;opacity:.55}
+    .layers img{width:min(82%,470px);min-width:260px;max-height:480px;object-fit:contain;position:relative;z-index:2;filter:drop-shadow(0 20px 22px rgba(0,0,0,.18));transform:scale(1.03)}
+    .layer-list{padding:40px 36px;display:flex;flex-direction:column;justify-content:center}
+    .layer-row{display:grid;grid-template-columns:26px 1fr;gap:14px;padding:13px 0;border-bottom:1px solid #e5e5e1}
+    .layer-row:last-child{border-bottom:0}
+    .layer-num{color:#111;display:block;font-size:11px;font-weight:900;line-height:1.25;margin-top:1px;text-align:center}
+    .layer-row b{font-size:12px;display:block}.layer-row span{display:block;font-size:10px;line-height:1.35;color:var(--muted);margin-top:3px}
+    .system-photo{position:relative;overflow:hidden;background:#ddd}
+    .system-photo img{width:100%;height:100%;object-fit:cover;filter:grayscale(.15) contrast(1.02);transition:transform .5s ease}
+    .system-photo:hover img{transform:scale(1.03)}
+    .system-photo:after{content:"";position:absolute;inset:50% 0 0;background:linear-gradient(transparent,rgba(0,0,0,.76))}
+    .system-photo-copy{position:absolute;z-index:2;left:30px;right:30px;bottom:28px;color:#fff;display:flex;align-items:end;justify-content:space-between;gap:20px}
+    .system-photo-copy b{font-size:20px;line-height:1.05;text-transform:uppercase;letter-spacing:-.025em;max-width:250px}
+    .round-arrow{width:38px;height:38px;border:1px solid rgba(255,255,255,.55);border-radius:50%;display:grid;place-items:center;font-size:18px}
+
+    /* Applications */
+    .applications{padding:72px 0 86px;background:#f7f7f4;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+    .applications-head{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:end;margin-bottom:28px}
+    .applications-head p{max-width:560px;margin:0;color:var(--muted);font-size:12px;line-height:1.55;justify-self:end}
+    .application-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:7px}
+    .app-card{min-height:330px;position:relative;overflow:hidden;background:#aaa}
+    .app-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.65) contrast(1.08);transition:transform .45s ease,filter .45s ease}
+    .app-card:hover img{transform:scale(1.045);filter:saturate(.95) contrast(1.06)}
+    .app-card:after{content:"";position:absolute;inset:30% 0 0;background:linear-gradient(transparent,rgba(0,0,0,.84))}
+    .app-card b{position:absolute;z-index:2;left:18px;right:18px;bottom:19px;color:#fff;font-size:13px;line-height:1.12;text-transform:uppercase;letter-spacing:-.02em}
+    .app-card span{display:none}
+
+    /* Tech */
+    .tech{background:#fff;padding:86px 0}
+    .tech-grid{display:grid;grid-template-columns:.42fr 1.2fr .36fr;gap:30px;align-items:stretch}
+    .tech-title .section-title{font-size:clamp(34px,3.4vw,54px)}
+    .spec-wrap{overflow-x:auto;border-top:1px solid #111}
+    table{border-collapse:collapse;width:100%;min-width:760px;font-size:11px}
+    th,td{padding:12px 14px;text-align:left;border-bottom:1px solid #e3e3df}
+    th{font-size:9px;text-transform:uppercase;letter-spacing:.08em;color:#777;font-weight:800}
+    td:nth-child(3){font-weight:900;font-size:12px;color:#111}
+    td:nth-child(4){color:#6c6c68}
+    .pdf-card{background:#111;color:#fff;min-height:310px;padding:28px;display:flex;flex-direction:column;position:relative;overflow:hidden}
+    .pdf-card:before{content:"";position:absolute;width:210px;height:210px;right:-94px;bottom:-65px;background:url('assets/matrix-hex-overview.webp') center/contain no-repeat;opacity:.72;transform:rotate(-15deg)}
+    .pdf-card b{font-size:22px;line-height:1.04;letter-spacing:-.04em;text-transform:uppercase;position:relative}
+    .pdf-card span{font-size:10px;color:#aaa;margin-top:8px;position:relative}
+    .pdf-card .link{margin-top:auto;align-self:flex-start;position:relative;color:#fff}
+
+    /* Safety */
+    .safety{background:#f4f4f1;border-top:1px solid var(--line)}
+    .safety-grid{display:grid;grid-template-columns:.9fr 1.1fr;min-height:500px}
+    .safety-copy{padding:72px max(var(--pad),calc((100vw - var(--max))/2 + var(--pad)));padding-right:50px;display:flex;flex-direction:column;justify-content:center}
+    .safety-top{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:38px}
+    .rating{padding-right:26px;border-right:1px solid #bfbfba}.rating:last-child{border-right:0}
+    .rating strong{font-size:42px;letter-spacing:-.06em}.rating em{font-style:normal;color:var(--accent);font-size:17px;margin-left:8px}.rating span{display:block;margin-top:7px;font-size:11px;color:var(--muted)}
+    .safety-note{font-size:10px;color:#7b7b76;margin-top:38px;line-height:1.45}
+    .safety-visual{position:relative;background:#c8c8c4;overflow:hidden}
+    .safety-visual img{position:absolute;inset:0;width:100%;height:100%;max-width:none;object-fit:cover;object-position:center;filter:grayscale(.08) contrast(1.08)}
+    .safety-visual:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent 48%,rgba(0,0,0,.18))}
+    .safety-label{position:absolute;z-index:2;right:30px;top:30px;color:#fff;font-size:12px;line-height:1.15;font-weight:850;text-transform:uppercase;max-width:140px}
+
+    /* CTA */
+    .cta{background:#111;color:#fff;position:relative;overflow:hidden}
+    .cta-grid{display:grid;grid-template-columns:1.05fr .95fr;min-height:430px}
+    .cta-copy{padding:78px max(var(--pad),calc((100vw - var(--max))/2 + var(--pad)));padding-right:40px;display:flex;flex-direction:column;justify-content:center}
+    .cta-copy h2{font-size:clamp(42px,5vw,82px);line-height:.88;letter-spacing:-.06em;text-transform:uppercase;margin:0;max-width:760px}
+    .cta-copy p{margin:22px 0 28px;color:#aaa;max-width:520px;line-height:1.55;font-size:13px}
+    .cta-visual{position:relative;overflow:hidden;background:#171717}
+    .cta-visual img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(.55) contrast(1.2);opacity:.82}
+    .cta-visual:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#111 0,transparent 34%),linear-gradient(0deg,rgba(0,0,0,.6),transparent 60%)}
+    .cta-brand{position:absolute;z-index:2;right:9%;bottom:11%;font-size:20px;font-weight:900;letter-spacing:.06em}
+    .cta-brand small{display:block;margin-top:12px;font-size:9px;line-height:1.3;color:#aaa;font-weight:650;letter-spacing:.1em;text-transform:uppercase}
+    .footerline{border-top:1px solid #2a2a2a;color:#777;font-size:9px;text-transform:uppercase;letter-spacing:.1em;padding:15px var(--pad);display:flex;justify-content:space-between;gap:20px}
+
+    /* Modal */
+    dialog{border:0;padding:0;width:min(560px,calc(100% - 30px));background:#fff;color:#111;box-shadow:0 30px 80px rgba(0,0,0,.35)}
+    dialog::backdrop{background:rgba(0,0,0,.62);backdrop-filter:blur(4px)}
+    .modal{padding:34px}.modal-top{display:flex;justify-content:space-between;gap:20px;align-items:start}.modal h3{font-size:34px;line-height:.95;letter-spacing:-.05em;margin:0;text-transform:uppercase}.close{border:0;background:none;font-size:26px;cursor:pointer}
+    .modal p{color:var(--muted);font-size:12px;line-height:1.5;max-width:430px;margin:13px 0 24px}.field{display:grid;gap:6px;margin-top:12px}.field label{font-size:9px;text-transform:uppercase;letter-spacing:.12em;color:#777;font-weight:800}.field input,.field textarea{border:1px solid #d7d7d2;background:#fafaf8;padding:13px 14px;outline:none}.field textarea{min-height:94px;resize:vertical}.modal .btn{width:100%;margin-top:18px}
+
+    /* Reveal */
+    .reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}.reveal.in{opacity:1;transform:none}
+
+    @media (max-width:1100px){
+      .nav{display:none}.menu{display:block}.header-contacts{display:none}
+      .hero-inner{grid-template-columns:1fr 1fr}.hero-stage{min-height:460px}
+      .metrics{grid-template-columns:repeat(2,1fr)}.metric:nth-child(2){border-right:0}.metric:nth-child(3),.metric:nth-child(4){border-top:1px solid #c9c9c3}
+      .formats-grid{grid-template-columns:repeat(3,1fr)}.format-card{min-height:340px}
+      .system-grid{grid-template-columns:1fr 1fr}.system-photo{grid-column:1/-1;height:420px;border-top:1px solid var(--line)}
+      .application-grid{overflow-x:auto;grid-template-columns:repeat(5,minmax(250px,1fr));padding-bottom:5px}
+      .tech-grid{grid-template-columns:1fr}.pdf-card{min-height:220px}
+      .safety-copy{padding-left:var(--pad)}
+      .cta-copy{padding-left:var(--pad)}
+    }
+
+    @media (max-width:760px){
+      :root{--header:64px;--pad:18px}
+      .header-inner{gap:16px}.brand{font-size:23px}.brand-sub{display:none}
+      .hero{min-height:auto}.hero-inner{display:block;padding-top:50px;padding-bottom:28px}.hero-copy{position:relative;z-index:4}.hero-copy .display{font-size:clamp(58px,18vw,88px)}.hero-sub{font-size:20px}.hero-desc{font-size:13px;max-width:330px}
+      .hero-actions{gap:18px;flex-wrap:wrap}.hero-actions .contact-inline{width:100%;display:grid;grid-template-columns:1fr 1fr;gap:9px 14px}.hero-actions .link{margin-left:2px}
+      .hero-stage{height:420px;min-height:0;margin:8px -18px 0}.hero-product{width:96%;max-height:400px;top:0}.hero-note{right:18px;top:20px}.hero-index{right:18px;bottom:18px}
+      .metrics{margin-top:20px}.metric{padding:14px 12px 14px 0}.metric:not(:first-child){padding-left:12px}.metric strong{font-size:22px}
+      .formats{padding-top:50px}.formats-head{display:block}.formats-head .link{margin-top:18px}.formats-grid{display:grid;grid-template-columns:1fr}.format-card{min-height:290px;border-right:0;border-bottom:1px solid var(--line)}.format-media{padding:24px 18px 10px}.format-media img{width:min(78%,240px);max-height:180px}.format-info{padding:18px}.format-info b{font-size:18px}
+      .systems{padding:64px 0}.systems-top{display:block}.systems-top p{margin-top:20px}.system-tabs{grid-template-columns:1fr}.system-tab{border-right:0;border-bottom:1px solid var(--line)}.system-tab:last-child{border-bottom:0}.system-grid{display:block}.layers{min-height:470px;border-right:0;border-bottom:1px solid var(--line)}.layer-list{padding:26px 22px}.system-photo{height:330px}
+      .applications{padding:58px 0}.applications-head{display:block}.applications-head p{margin-top:18px;justify-self:start}.application-grid{margin-right:-18px}.app-card{min-height:360px}
+      .tech{padding:64px 0}.tech-grid{gap:26px}.spec-wrap{margin-right:-18px;padding-right:18px}.pdf-card{min-height:230px}
+      .safety-grid{display:block}.safety-copy{padding:58px 18px}.safety-top{gap:16px}.rating strong{font-size:36px}.safety-visual{height:390px}
+      .cta-grid{display:block}.cta-copy{padding:62px 18px}.cta-visual{height:300px}.footerline{display:block;line-height:1.6}
+      .modal{padding:26px}.modal h3{font-size:28px}
+    }
+    @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+
+
+    /* Final polish */
+    :where(section[id]){scroll-margin-top:calc(var(--header) + 20px)}
+    :where(a,button,input,textarea):focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+    .btn .arrow,.link>span:last-child{transition:transform .22s ease}
+    .btn:hover .arrow,.link:hover>span:last-child{transform:translateX(4px)}
+    .header{transition:background .28s ease,box-shadow .28s ease,border-color .28s ease}
+    .header.scrolled{background:rgba(247,247,244,.97);box-shadow:0 10px 30px rgba(0,0,0,.045);border-color:rgba(20,20,20,.13)}
+    .header:after{content:"";position:absolute;left:0;bottom:-1px;height:1px;width:var(--scroll-progress,0%);background:#111;z-index:2;transition:width .08s linear}
+    .nav a.active{font-weight:850}
+    .nav a.active:after{right:0}
+    .brand{transition:opacity .2s ease}.brand:hover{opacity:.62}
+    .menu{cursor:pointer}.menu[aria-expanded="true"] i{background:#111}
+
+    .hero-copy{padding-top:1vh}
+    .hero-desc{max-width:490px}
+    .hero-product{will-change:transform;transition:filter .35s ease}
+    .hero-stage:hover .hero-product{filter:drop-shadow(0 34px 30px rgba(0,0,0,.22))}
+    .hero-index{opacity:.68}
+    .hero-note{opacity:.84}
+    .metric{transition:background .2s ease}.metric:hover{background:rgba(255,255,255,.34)}
+
+    .formats-head,.systems-top,.applications-head{padding-top:3px}
+    .format-card:hover .format-media img{transform:translateY(-8px) rotate(-3deg)}
+
+    .system-tab{transition:background .2s ease,color .2s ease}
+    .system-tab:not(.active):hover{background:#ecece8}
+    .layers img{transition:opacity .18s ease,transform .25s ease}
+    .layers.changing img{opacity:.15;transform:translateY(6px) scale(.985)}
+    .layer-row{transition:background .18s ease,padding-left .18s ease}
+    .layer-row:hover{background:#f4f4f1;padding-left:4px}
+    .system-photo img{transition:transform .5s cubic-bezier(.2,.75,.25,1)}
+    .system-photo:hover img{transform:scale(1.035)}
+
+    .application-grid{scrollbar-width:none}.application-grid::-webkit-scrollbar{display:none}
+    .app-card{scroll-snap-align:start}
+    .app-card img{transition:transform .55s cubic-bezier(.2,.75,.25,1),filter .3s ease}
+    .app-card:hover img{transform:scale(1.055);filter:grayscale(.08) contrast(1.08)}
+    .app-card:after{transition:background .3s ease}.app-card:hover:after{background:linear-gradient(0deg,rgba(0,0,0,.78) 0,rgba(0,0,0,.14) 63%,transparent 100%)}
+
+    .spec-wrap{border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+    .spec-wrap table tbody tr{transition:background .15s ease}
+    .spec-wrap table tbody tr:hover{background:#f3f3f0}
+    .mobile-spec-grid{display:none}
+    .pdf-card{transition:transform .24s ease,background .24s ease}.pdf-card:hover{transform:translateY(-3px);background:#191919}
+
+    .safety-visual img{transition:transform .6s cubic-bezier(.2,.75,.25,1)}
+    .safety-visual:hover img{transform:scale(1.025)}
+    .cta-visual img{transition:transform .7s cubic-bezier(.2,.75,.25,1)}
+    .cta:hover .cta-visual img{transform:scale(1.025)}
+
+    dialog{border-radius:0;max-height:min(720px,calc(100svh - 32px));overflow:auto}
+    .close{width:42px;height:42px;display:grid;place-items:center;border:1px solid var(--line);transition:background .2s ease,color .2s ease}
+    .close:hover{background:#111;color:#fff}
+    .field input,.field textarea{border-radius:0;transition:border-color .18s ease,background .18s ease}
+    .field input:focus,.field textarea:focus{border-color:#111;background:#fff}
+    .toast{position:fixed;z-index:180;left:50%;bottom:26px;transform:translate(-50%,18px);background:#111;color:#fff;padding:13px 17px;font-size:11px;font-weight:750;letter-spacing:.01em;opacity:0;pointer-events:none;transition:opacity .22s ease,transform .22s ease;box-shadow:0 16px 42px rgba(0,0,0,.2)}
+    .toast.show{opacity:1;transform:translate(-50%,0)}
+
+    @media (min-width:761px){
+      .hero-inner{padding-block:clamp(50px,6vh,82px) 40px}
+      .formats-grid,.system-grid,.application-grid{box-shadow:0 1px 0 rgba(255,255,255,.8) inset}
+    }
+
+    @media (max-width:760px){
+      .header{backdrop-filter:blur(14px)}
+      .hero-inner{padding-top:42px}
+      .hero-copy .display{font-size:clamp(60px,18.5vw,90px);line-height:.8}
+      .hero-desc{max-width:355px;line-height:1.48}
+      .hero-stage{height:470px;margin-top:2px}
+      .hero-product{width:112%;max-width:none;max-height:450px;top:0}
+      .hero-note{top:18px;right:18px;font-size:9px}
+      .hero-index{bottom:12px}
+      .metrics{margin-top:24px}
+      .metric strong{font-size:24px}.metric span{font-size:9.5px}
+      .formats{padding-top:58px}
+      .formats-head{margin-bottom:28px}.formats-head .section-title{font-size:clamp(38px,11vw,52px)}
+      .format-large{min-height:520px;padding:24px}.format-large img{width:98%;left:-22%;bottom:-8%}.format-copy{width:48%}
+      .format-card{min-height:310px;padding:0}.format-media img{width:min(76%,220px);max-height:165px}
+      .systems{padding:72px 0 78px}.systems-top{gap:18px}.systems-top p{font-size:12px}
+      .system-tabs{margin-top:28px}.system-tab{min-height:64px;padding:0 18px}.system-tab b{font-size:17px}
+      .layers{min-height:520px}.layers img{max-height:480px}
+      .layer-list{padding:22px 18px}.layer-row{padding-block:10px}.layer-row b{font-size:11px}.layer-row span{font-size:8.5px}
+      .system-photo{height:390px}
+      .applications{padding:66px 0}.applications-head .section-title{font-size:clamp(42px,12vw,58px)}
+      .application-grid{scroll-snap-type:x mandatory;grid-template-columns:repeat(5,minmax(78vw,1fr));gap:1px;margin-top:28px}.app-card{min-height:430px}.app-card b{font-size:16px}
+      .tech{padding:70px 0}.spec-wrap{display:none}.mobile-spec-grid{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--line);border-left:1px solid var(--line)}
+      .mobile-spec{min-height:128px;padding:17px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);display:flex;flex-direction:column;justify-content:space-between;background:#fafaf8}
+      .mobile-spec span{font-size:9px;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);font-weight:800;line-height:1.25}
+      .mobile-spec strong{font-size:25px;letter-spacing:-.055em;line-height:1;margin-top:16px}
+      .mobile-spec small{font-size:8.5px;color:#777;line-height:1.3;margin-top:7px}
+      .pdf-card{margin-top:1px;min-height:250px}
+      .safety-copy{padding:64px 18px}.safety-copy .section-title{font-size:clamp(42px,12vw,58px)}.safety-top{margin-top:32px}.safety-visual{height:440px}
+      .cta-copy{padding-top:70px;padding-bottom:70px}.cta-copy h2{font-size:clamp(46px,13vw,66px)}.cta-visual{height:360px}
+      .toast{left:18px;right:18px;bottom:18px;transform:translateY(18px);text-align:center}.toast.show{transform:none}
+    }
+
+    @media (max-width:390px){
+      :root{--pad:16px}
+      .hero-copy .display{font-size:clamp(56px,18vw,78px)}
+      .hero-stage{height:430px}.hero-product{width:118%;top:0}
+      .mobile-spec{min-height:120px;padding:14px}.mobile-spec strong{font-size:22px}
+      .application-grid{grid-template-columns:repeat(5,minmax(82vw,1fr))}
+    }
+
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="shell header-inner">
+      <a class="brand" href="#top">PSL <span class="brand-sub">Laboratory of<br>polymer systems</span></a>
+      <nav class="nav" aria-label="Основная навигация">
+        <a href="#formats" data-nav="formats">Продукт</a>
+        <a href="#systems" data-nav="systems">Системы</a>
+        <a href="#applications" data-nav="applications">Применение</a>
+        <a href="#specs" data-nav="specs">Характеристики</a>
+      </nav>
+      <div class="header-contacts" aria-label="Контакты"><a href="tel:+78005514145">8-800-551-41-45</a><a href="mailto:info@polymer-system.ru">info@polymer-system.ru</a></div>
+      <button class="menu" aria-label="Открыть меню" aria-expanded="false" aria-controls="mobileNav"><i></i><i></i></button>
+    </div>
+  </header>
+  <nav class="mobile-nav" id="mobileNav" aria-label="Мобильная навигация">
+    <a href="#formats">Продукт</a><a href="#systems">Системы</a><a href="#applications">Применение</a><a href="#specs">Характеристики</a>
+    <div class="mobile-contacts" aria-label="Контакты">
+      <a href="https://www.polymer-system.ru" target="_blank" rel="noopener">www.polymer-system.ru</a>
+      <a href="tel:+78005514145">8-800-551-41-45</a>
+      <a href="tel:+79130001875">8-913-000-18-75</a>
+      <a href="mailto:info@polymer-system.ru">info@polymer-system.ru</a>
+    </div>
+  </nav>
+
+  <main id="top">
+    <section class="hero">
+      <div class="shell hero-inner">
+        <div class="hero-copy reveal">
+          <p class="eyebrow">Промышленная плиточная система</p>
+          <h1 class="display">FIXTILE<br>MATRIX</h1>
+          <p class="hero-sub">Монолитная защита для промышленных полов</p>
+          <p class="hero-desc">Плотная промышленная керамика работает как часть единой системы — вместе с эпоксидной посадкой, армированием, затиркой и технологией виброукладки.</p>
+          <div class="metrics">
+            <div class="metric"><strong>25 лет</strong><span>проектный срок службы системы</span></div>
+            <div class="metric"><strong>0,02%</strong><span>водопоглощение керамики</span></div>
+            <div class="metric"><strong>ULA / HA</strong><span>максимальный класс химстойкости</span></div>
+            <div class="metric"><strong>R11 / R12</strong><span>противоскольжение для промышленности</span></div>
+          </div>
+          <div class="hero-actions">
+            <div class="contact-inline" aria-label="Контакты">
+              <a href="tel:+78005514145">8-800-551-41-45</a>
+              <a href="tel:+79130001875">8-913-000-18-75</a>
+              <a href="mailto:info@polymer-system.ru">info@polymer-system.ru</a>
+            </div>
+            <a class="link" href="#systems">Смотреть систему <span>↓</span></a>
+          </div>
+        </div>
+        <div class="hero-stage reveal">
+          <div class="hero-note">Монолитная<br>защита<br>для промышленных<br>объектов</div>
+          <img class="hero-product" src="assets/matrix-hex-tile.webp" alt="Шестигранная плитка FIXTILE MATRIX" fetchpriority="high" decoding="async" width="1345" height="1310" />
+          <div class="hero-index"><span>01</span><span class="line"></span><span>04</span><span>→</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="formats" id="formats">
+      <div class="shell">
+        <div class="formats-head reveal">
+          <div><p class="eyebrow">Форматы</p><h2 class="section-title">Одна система.<br>Разная геометрия.</h2></div>
+          <a class="link" href="#specs">Все характеристики <span>→</span></a>
+        </div>
+        <div class="formats-grid reveal">
+          <article class="format-card">
+            <div class="format-media"><img src="assets/format-square.svg" alt="Квадратная плитка FIXTILE MATRIX" loading="lazy" /></div>
+            <div class="format-info"><b>Квадрат</b><span>200 × 200 × 15 мм</span></div>
+          </article>
+          <article class="format-card">
+            <div class="format-media"><img src="assets/format-rectangle.svg" alt="Прямоугольная плитка FIXTILE MATRIX" loading="lazy" /></div>
+            <div class="format-info"><b>Прямоугольник</b><span>200 × 100 × 15 мм</span></div>
+          </article>
+          <article class="format-card">
+            <div class="format-media"><img src="assets/format-hex.svg" alt="Шестигранная плитка FIXTILE MATRIX" loading="lazy" /></div>
+            <div class="format-info"><b>HEX</b><span>125 × 108 мм</span></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="systems" id="systems">
+      <div class="shell">
+        <div class="systems-top reveal">
+          <div><p class="eyebrow">Две системы</p><h2 class="section-title">Одно решение</h2></div>
+          <p>Конфигурация подбирается под условия объекта: от стандартных производственных нагрузок до агрессивной химии и сложной эксплуатации.</p>
+        </div>
+        <div class="system-tabs reveal" role="tablist" aria-label="Выбор системы">
+          <button class="system-tab active" data-system="classic" role="tab" aria-selected="true"><span class="cube"></span><span><b>CLASSIC</b><small>Надёжное решение для стандартных условий</small></span></button>
+          <button class="system-tab" data-system="pro" role="tab" aria-selected="false"><span class="cube"></span><span><b>PRO</b><small>Усиленная защита для агрессивных сред</small></span></button>
+        </div>
+        <div class="system-grid reveal">
+          <div class="layers"><img id="systemImage" src="assets/matrix-classic-layers.webp" alt="Слои системы FIXTILE MATRIX" loading="lazy" /></div>
+          <div class="layer-list" id="layerList"></div>
+          <div class="system-photo">
+            <img src="assets/system-closeup.webp" alt="Промышленная плиточная система крупным планом" loading="lazy" />
+            <div class="system-photo-copy"><b>Монолитная система без слабых мест</b><span class="round-arrow">→</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="applications" id="applications">
+      <div class="shell">
+        <div class="applications-head reveal">
+          <div><p class="eyebrow">Области применения</p><h2 class="section-title">Для тяжёлой<br>эксплуатации</h2></div>
+          <p>Химстойкость, минимальное водопоглощение, износостойкость и противоскольжение закрывают основные риски промышленных полов.</p>
+        </div>
+        <div class="application-grid reveal">
+          <article class="app-card"><img src="assets/application-food.webp" alt="Пищевая промышленность" loading="lazy"><b>Пищевая<br>промышленность</b></article>
+          <article class="app-card"><img src="assets/application-chemical.webp" alt="Химические производства" loading="lazy"><b>Химические<br>производства</b></article>
+          <article class="app-card"><img src="assets/application-wet.webp" alt="Влажные зоны и мойки" loading="lazy"><b>Влажные зоны<br>и мойки</b></article>
+          <article class="app-card"><img src="assets/application-logistics.webp" alt="Склады и логистика" loading="lazy"><b>Склады<br>и логистика</b></article>
+          <article class="app-card"><img src="assets/application-pharma.webp" alt="Фармацевтика" loading="lazy"><b>Фармацевтика<br>и чистые зоны</b></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="tech" id="specs">
+      <div class="shell tech-grid reveal">
+        <div class="tech-title"><p class="eyebrow">Данные</p><h2 class="section-title">Технические<br>характеристики</h2></div>
+        <div class="spec-wrap">
+          <table>
+            <thead><tr><th>Показатель</th><th>Норма / метод</th><th>FIXTILE MATRIX</th><th>Для объекта</th></tr></thead>
+            <tbody>
+              <tr><td>Толщина</td><td>8–18 мм</td><td>15 мм</td><td>Запас прочности без лишней высоты пола</td></tr>
+              <tr><td>Водопоглощение</td><td>≤ 0,05%</td><td>0,02%</td><td>Минимальное проникновение влаги</td></tr>
+              <tr><td>Прочность при изгибе</td><td>≥ 35 МПа</td><td>40 МПа</td><td>Ударные и транспортные нагрузки</td></tr>
+              <tr><td>Износостойкость</td><td>≤ 0,18 г/см²</td><td>0,15 г/см²</td><td>Зоны движения техники и абразива</td></tr>
+              <tr><td>Морозостойкость</td><td>≥ 100 циклов</td><td>100+</td><td>Холодные и неотапливаемые зоны</td></tr>
+              <tr><td>Химическая стойкость</td><td>EN ISO 10545-13</td><td>ULA / HA</td><td>Кислоты, щёлочи, масла</td></tr>
+              <tr><td>Противоскольжение</td><td>DIN EN 16165</td><td>R11 / R12</td><td>Мокрые и производственные зоны</td></tr>
+              <tr><td>Температурная стойкость</td><td>термошок</td><td>&gt;100°C</td><td>Паровая мойка и температурные перепады</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="mobile-spec-grid" aria-label="Ключевые технические характеристики">
+          <div class="mobile-spec"><span>Толщина</span><strong>15 мм</strong><small>промышленный формат</small></div>
+          <div class="mobile-spec"><span>Водопоглощение</span><strong>0,02%</strong><small>минимальное проникновение влаги</small></div>
+          <div class="mobile-spec"><span>Изгиб</span><strong>40 МПа</strong><small>запас для механических нагрузок</small></div>
+          <div class="mobile-spec"><span>Износ</span><strong>0,15 г/см²</strong><small>для транспортных и абразивных зон</small></div>
+          <div class="mobile-spec"><span>Морозостойкость</span><strong>100+</strong><small>циклов замораживания / оттаивания</small></div>
+          <div class="mobile-spec"><span>Химстойкость</span><strong>ULA / HA</strong><small>кислоты, щёлочи, масла</small></div>
+          <div class="mobile-spec"><span>Сцепление</span><strong>R11 / R12</strong><small>мокрые и производственные зоны</small></div>
+          <div class="mobile-spec"><span>Термошок</span><strong>&gt;100°C</strong><small>паровая мойка и перепады температуры</small></div>
+        </div>
+        <aside class="pdf-card"><b>Полные<br>технические<br>данные</b><span>Презентация / спецификация</span><a class="link" href="assets/fixtile-matrix-technical.pdf" download>Скачать PDF <span>↓</span></a></aside>
+      </div>
+    </section>
+
+    <section class="safety">
+      <div class="safety-grid">
+        <div class="safety-copy reveal">
+          <p class="eyebrow">Поверхность и безопасность</p>
+          <h2 class="section-title">Сцепление там,<br>где это критично</h2>
+          <div class="safety-top">
+            <div class="rating"><strong>R11</strong><em>&gt;19°–27°</em><span>рабочие и производственные зоны</span></div>
+            <div class="rating"><strong>R12</strong><em>&gt;27°–35°</em><span>зоны повышенного риска скольжения</span></div>
+          </div>
+          <div class="safety-note">Микротекстура промышленного назначения. Испытание в рабочей обуви на наклонной плоскости.</div>
+        </div>
+        <div class="safety-visual reveal"><img src="assets/safety-photo.webp" alt="Рабочая обувь на поверхности FIXTILE MATRIX" loading="lazy"></div>
+      </div>
+    </section>
+
+    <section class="cta" id="contacts">
+      <div class="cta-grid">
+        <div class="cta-copy reveal"><p class="eyebrow" style="color:#8a8a86">Контакты</p><h2>Свяжитесь с нами</h2><p>По вопросам подбора системы, спецификации и применения FIXTILE MATRIX.</p><div class="cta-contacts" aria-label="Контакты"><a href="https://www.polymer-system.ru" target="_blank" rel="noopener">www.polymer-system.ru</a><a href="tel:+78005514145">8-800-551-41-45</a><a href="tel:+79130001875">8-913-000-18-75</a><a href="mailto:info@polymer-system.ru">info@polymer-system.ru</a></div></div>
+        <div class="cta-visual reveal"><img src="assets/footer-tiles.webp" alt="Плитка FIXTILE MATRIX" loading="lazy"><div class="cta-brand">FIXTILE MATRIX<small>Надёжные полы<br>для реальных задач</small></div></div>
+      </div>
+      <div class="footerline"><span>© PSL / FIXTILE MATRIX</span><span>Промышленная плиточная система</span></div>
+    </section>
+  </main>
+
+  <script>
+    const layers = {
+      classic:[
+        ['Плитка FIXTILE MATRIX','кислотоупорная промышленная керамика'],
+        ['Затирка FIXTILE SE','химически стойкий эпоксидный состав'],
+        ['Клей FIXTILE GLS700','двухкомпонентный эпоксидный клей'],
+        ['Гидроизоляция FIXTILE SPU','полиуретановая химстойкая мембрана'],
+        ['Сетка FIXTILE X-Bond','щелочестойкое армирование'],
+        ['Грунтовка FIXTILE GLS100','эпоксидный грунт'],
+        ['Герметик FIXTILE EGL','эластичный полиуретановый шов'],
+        ['Бетонное основание','несущая конструкция']
+      ],
+      pro:[
+        ['Плитка FIXTILE MATRIX','кислотоупорная промышленная керамика'],
+        ['Затирка FIXTILE GLS500','химически стойкий эпоксидный состав'],
+        ['Сетка FIXTILE X-Bond','щелочестойкое армирование'],
+        ['Кварцевый песок','сухой кварцевый наполнитель'],
+        ['Клей FIXTILE GLS400','химстойкий эпоксидный клей'],
+        ['Грунтовка FIXTILE GLS100','эпоксидный грунт'],
+        ['Герметик FIXTILE EGL','полиуретановый компенсационный шов'],
+        ['Бетонное основание','несущая конструкция']
+      ]
+    };
+
+    const layerList = document.getElementById('layerList');
+    const systemImage = document.getElementById('systemImage');
+    const layersBox = systemImage.closest('.layers');
+    function renderLayers(type){
+      layerList.innerHTML = layers[type].map((item,i)=>`<div class="layer-row"><span class="layer-num">${i+1}</span><div><b>${item[0]}</b><span>${item[1]}</span></div></div>`).join('');
+    }
+    function setSystem(type, button){
+      document.querySelectorAll('.system-tab').forEach(x=>{
+        const active = x === button;
+        x.classList.toggle('active', active);
+        x.setAttribute('aria-selected', active ? 'true' : 'false');
+      });
+      layersBox.classList.add('changing');
+      window.setTimeout(()=>{
+        renderLayers(type);
+        systemImage.src = type === 'pro' ? 'assets/matrix-monolithic-system.webp' : 'assets/matrix-classic-layers.webp';
+        requestAnimationFrame(()=>layersBox.classList.remove('changing'));
+      },140);
+    }
+    renderLayers('classic');
+    document.querySelectorAll('.system-tab').forEach(btn=>btn.addEventListener('click',()=>setSystem(btn.dataset.system,btn)));
+
+    const menu = document.querySelector('.menu');
+    const mobileNav = document.querySelector('.mobile-nav');
+    function setMenu(open){
+      menu.classList.toggle('open',open);
+      mobileNav.classList.toggle('open',open);
+      menu.setAttribute('aria-expanded',open?'true':'false');
+      menu.setAttribute('aria-label',open?'Закрыть меню':'Открыть меню');
+      document.body.style.overflow=open?'hidden':'';
+    }
+    menu.addEventListener('click',()=>setMenu(!mobileNav.classList.contains('open')));
+    mobileNav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>setMenu(false)));
+
+    const revealItems = document.querySelectorAll('.reveal');
+    if('IntersectionObserver' in window){
+      const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.10,rootMargin:'0px 0px -4%'});
+      revealItems.forEach(el=>io.observe(el));
+    } else revealItems.forEach(el=>el.classList.add('in'));
+
+    const header = document.querySelector('.header');
+    const navLinks = [...document.querySelectorAll('.nav a[data-nav]')];
+    const trackedSections = navLinks.map(a=>document.getElementById(a.dataset.nav)).filter(Boolean);
+    let ticking=false;
+    function updateChrome(){
+      const y=window.scrollY;
+      header.classList.toggle('scrolled',y>12);
+      const max=document.documentElement.scrollHeight-innerHeight;
+      const progress=max>0?Math.min(100,(y/max)*100):0;
+      header.style.setProperty('--scroll-progress',`${progress}%`);
+      const marker=y+innerHeight*.32;
+      let current='';
+      trackedSections.forEach(sec=>{if(sec.offsetTop<=marker) current=sec.id});
+      navLinks.forEach(a=>a.classList.toggle('active',a.dataset.nav===current));
+      ticking=false;
+    }
+    addEventListener('scroll',()=>{if(!ticking){requestAnimationFrame(updateChrome);ticking=true}},{passive:true});
+    addEventListener('resize',updateChrome,{passive:true});
+    updateChrome();
+  </script>
+</body>
+</html>
