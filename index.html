@@ -135,7 +135,7 @@
     .layers:before{content:"";position:absolute;inset:0;background-image:linear-gradient(#ebebe7 1px,transparent 1px),linear-gradient(90deg,#ebebe7 1px,transparent 1px);background-size:44px 44px;opacity:.55}
     .layers img{width:min(82%,470px);min-width:260px;max-height:480px;object-fit:contain;position:relative;z-index:2;filter:drop-shadow(0 20px 22px rgba(0,0,0,.18));transform:scale(1.03)}
     .layer-list{padding:40px 36px;display:flex;flex-direction:column;justify-content:center}
-    .layer-row{display:grid;grid-template-columns:26px 1fr;gap:14px;padding:13px 0;border-bottom:1px solid #e5e5e1}
+    .layer-row{display:grid;grid-template-columns:26px minmax(0,1fr) auto;gap:14px;padding:13px 0;border-bottom:1px solid #e5e5e1}
     .layer-row:last-child{border-bottom:0}
     .layer-num{color:#111;display:block;font-size:11px;font-weight:900;line-height:1.25;margin-top:1px;text-align:center}
     .layer-row b{font-size:12px;display:block}.layer-row span{display:block;font-size:10px;line-height:1.35;color:var(--muted);margin-top:3px}
@@ -272,7 +272,11 @@
     .layers img{transition:opacity .18s ease,transform .25s ease}
     .layers.changing img{opacity:.15;transform:translateY(6px) scale(.985)}
     .layer-row{transition:background .18s ease,padding-left .18s ease}
-    .layer-row:hover{background:#f4f4f1;padding-left:4px}
+    .layer-link{cursor:pointer;color:inherit;text-decoration:none}
+    .layer-link:hover,.layer-link:focus-visible{background:#f4f4f1;padding-left:4px}
+    .layer-link:hover b,.layer-link:focus-visible b{text-decoration:underline;text-underline-offset:3px}
+    .layer-link-arrow{font-size:18px!important;color:#111!important;margin-top:0!important;align-self:center;transition:transform .18s ease}
+    .layer-link:hover .layer-link-arrow,.layer-link:focus-visible .layer-link-arrow{transform:translate(2px,-2px)}
     .system-photo img{transition:transform .5s cubic-bezier(.2,.75,.25,1)}
     .system-photo:hover img{transform:scale(1.035)}
 
@@ -586,22 +590,22 @@
 
     const layers = {
       classic:[
-        ['Плитка FIXTILE MATRIX','кислотоупорная промышленная керамика'],
-        ['Затирка FIXTILE SE','химически стойкий эпоксидный состав'],
+        ['Плитка FIXTILE MATRIX','кислотоупорная промышленная керамика','#formats'],
+        ['Затирка FIXTILE SE','химически стойкий эпоксидный состав','https://fixtile.ru/se'],
         ['Клей FIXTILE GLS700','двухкомпонентный эпоксидный клей'],
         ['Гидроизоляция FIXTILE SPU','полиуретановая химстойкая мембрана'],
         ['Сетка FIXTILE X-Bond','щелочестойкое армирование'],
-        ['Грунтовка FIXTILE GLS100','эпоксидный грунт'],
+        ['Грунтовка FIXTILE GLS100','эпоксидный грунт','https://fixtile.ru/gls100'],
         ['Герметик FIXTILE EGL','эластичный полиуретановый шов'],
         ['Бетонное основание','несущая конструкция']
       ],
       pro:[
-        ['Плитка FIXTILE MATRIX','кислотоупорная промышленная керамика'],
-        ['Затирка FIXTILE GLS500','химически стойкий эпоксидный состав'],
+        ['Плитка FIXTILE MATRIX','кислотоупорная промышленная керамика','#formats'],
+        ['Затирка FIXTILE GLS500','химически стойкий эпоксидный состав','https://fixtile.ru/gls500'],
         ['Сетка FIXTILE X-Bond','щелочестойкое армирование'],
         ['Кварцевый песок','сухой кварцевый наполнитель'],
-        ['Клей FIXTILE GLS400','химстойкий эпоксидный клей'],
-        ['Грунтовка FIXTILE GLS100','эпоксидный грунт'],
+        ['Клей FIXTILE GLS400','химстойкий эпоксидный клей','https://fixtile.ru/gls400'],
+        ['Грунтовка FIXTILE GLS100','эпоксидный грунт','https://fixtile.ru/gls100'],
         ['Герметик FIXTILE EGL','полиуретановый компенсационный шов'],
         ['Бетонное основание','несущая конструкция']
       ]
@@ -611,7 +615,13 @@
     const systemImage = document.getElementById('systemImage');
     const layersBox = systemImage.closest('.layers');
     function renderLayers(type){
-      layerList.innerHTML = layers[type].map((item,i)=>`<div class="layer-row"><span class="layer-num">${i+1}</span><div><b>${item[0]}</b><span>${item[1]}</span></div></div>`).join('');
+      layerList.innerHTML = layers[type].map((item,i)=>{
+        const content = `<span class="layer-num">${i+1}</span><div><b>${item[0]}</b><span>${item[1]}</span></div>`;
+        // Link only to verified product pages; never substitute a different material.
+        return item[2]
+          ? `<a class="layer-row layer-link" href="${item[2]}" aria-label="Подробнее: ${item[0]}">${content}<span class="layer-link-arrow" aria-hidden="true">↗</span></a>`
+          : `<div class="layer-row">${content}</div>`;
+      }).join('');
     }
     function setSystem(type, button){
       document.querySelectorAll('.system-tab').forEach(x=>{
