@@ -117,6 +117,9 @@
 
     /* SVG-first previews; replace with decoded PNG only when ready. */
     .format-media img{grid-area:1/1}
+    /* Crossfade the placeholder out when the full PNG is decoded (MDN/Cloudinary pattern). */
+    .format-media .format-svg{transition:opacity .35s ease,transform .45s cubic-bezier(.2,.75,.25,1)}
+    .format-media .format-svg.is-hidden{opacity:0}
     .format-media .format-png{opacity:0;pointer-events:none;transition:opacity .35s ease,transform .45s cubic-bezier(.2,.75,.25,1)}
     .format-media .format-png.is-ready{opacity:1}
 
@@ -424,7 +427,7 @@
         </div>
         <div class="hero-stage reveal">
           <div class="hero-note">Монолитная<br>защита<br>для промышленных<br>объектов</div>
-          <img class="hero-product" src="assets/matrix-hex-tile.webp" alt="Шестигранная плитка FIXTILE MATRIX" fetchpriority="high" decoding="async" width="1345" height="1310" />
+          <img class="hero-product" src="assets/matrix-hex-tile.webp?v=2973972d" alt="Шестигранная плитка FIXTILE MATRIX" fetchpriority="high" decoding="async" width="1345" height="1310" />
           <div class="hero-index"><span>01</span><span class="line"></span><span>04</span><span>→</span></div>
         </div>
       </div>
@@ -560,14 +563,23 @@
 
         const png = new Image();
         png.className = 'format-png';
-        png.alt = '';
+        png.alt = svg.alt;
         png.decoding = 'async';
-        png.setAttribute('aria-hidden', 'true');
+        svg.classList.add('format-svg');
 
         const reveal = () => {
+          // Keep the SVG only during the fade. Otherwise transparency in the PNG
+          // lets the old tile show through and creates a duplicate-looking image.
           media.appendChild(png);
           requestAnimationFrame(() => {
-            requestAnimationFrame(() => png.classList.add('is-ready'));
+            requestAnimationFrame(() => {
+              png.classList.add('is-ready');
+              svg.classList.add('is-hidden');
+              svg.setAttribute('aria-hidden', 'true');
+              // Remove the old image from the DOM after the crossfade,
+              // including when reduced motion disables transition events.
+              window.setTimeout(() => svg.remove(), 400);
+            });
           });
         };
 
