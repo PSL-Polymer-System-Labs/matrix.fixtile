@@ -1,0 +1,9 @@
+[Unit]
+Description=Deploy FIXTILE MATRIX static site from GitHub main
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+User=root
+ExecStart=/usr/local/sbin/fixtile-matrix-deploy
