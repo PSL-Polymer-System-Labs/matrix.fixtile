@@ -1,0 +1,12 @@
+[Unit]
+Description=Poll FIXTILE MATRIX GitHub main for new commits
+
+[Timer]
+OnBootSec=2min
+OnUnitInactiveSec=1min
+AccuracySec=15s
+Persistent=true
+Unit=fixtile-matrix-deploy.service
+
+[Install]
+WantedBy=timers.target
