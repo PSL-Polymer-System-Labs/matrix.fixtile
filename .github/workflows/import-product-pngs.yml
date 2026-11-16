@@ -1,0 +1,42 @@
+name: Import production tile-format PNGs
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - .github/workflows/import-product-pngs.yml
+
+permissions:
+  contents: write
+
+jobs:
+  import-pngs:
+    if: github.repository == 'PSL-Polymer-System-Labs/matrix.fixtile'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fetch original PNGs from the production server
+        shell: bash
+        run: |
+          set -euo pipefail
+          for name in format-square format-rectangle format-hex; do
+            curl --fail --location --show-error --silent --retry 3 \
+              --connect-timeout 10 --max-time 90 \
+              "https://matrix.fixtile.ru/assets/${name}.png" \
+              --output "assets/${name}.png"
+            test -s "assets/${name}.png"
+            test "$(file --brief --mime-type "assets/${name}.png")" = 'image/png'
+          done
+      - name: Commit original PNG assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- assets/format-square.png assets/format-rectangle.png assets/format-hex.png
+          if git diff --cached --quiet; then
+            echo "PNG assets already tracked and unchanged"
+            exit 0
+          fi
+          git commit -m "Track original PNG tile-format images from server"
+          git push origin HEAD:main
