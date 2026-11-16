@@ -47,10 +47,10 @@ verify_site() {
 if [[ "$revision" == "$previous" ]]; then
   # Previously, this branch skipped the permissions fix and HTTPS test.
   if repair_permissions && verify_site; then
-    echo "Already deployed and healthy: \${revision:0:12}"
+    echo "Already deployed and healthy: ${revision:0:12}"
     exit 0
   fi
-  echo "ERROR: unchanged revision \${revision:0:12}, but HTTPS/readability verification failed" >&2
+  echo "ERROR: unchanged revision ${revision:0:12}, but HTTPS/readability verification failed" >&2
   exit 1
 fi
 
