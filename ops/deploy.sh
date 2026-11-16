@@ -23,9 +23,35 @@ git -C "$SOURCE" reset --quiet --hard FETCH_HEAD
 revision="$(git -C "$SOURCE" rev-parse HEAD)"
 previous="$(cat "$STATE_DIR/deployed.sha" 2>/dev/null || true)"
 
+# Keep public site files readable even when the Git revision is unchanged.
+repair_permissions() {
+  [[ -d "$DEST/assets" && -f "$DEST/index.html" && -f "$DEST/favicon.svg" ]] || return 1
+  chmod 755 "$DEST" "$DEST/assets"
+  chmod 644 "$DEST/index.html" "$DEST/favicon.svg"
+  find "$DEST/assets" -type d -exec chmod 755 {} +
+  find "$DEST/assets" -type f -exec chmod 644 {} +
+}
+
+# Test the actual HTTPS endpoint as Nginx would serve it.
+verify_site() {
+  runuser -u www-data -- test -r "$DEST/index.html"
+  runuser -u www-data -- test -r "$DEST/assets/format-square.png"
+  local status
+  status="$(curl --silent --show-error --max-time 15 \
+    --resolve matrix.fixtile.ru:443:127.0.0.1 \
+    --output /dev/null --write-out '%{http_code}' \
+    'https://matrix.fixtile.ru/')" || return 1
+  [[ "$status" == "200" ]]
+}
+
 if [[ "$revision" == "$previous" ]]; then
-  echo "Already deployed: ${revision:0:12}"
-  exit 0
+  # Previously, this branch skipped the permissions fix and HTTPS test.
+  if repair_permissions && verify_site; then
+    echo "Already deployed and healthy: \${revision:0:12}"
+    exit 0
+  fi
+  echo "ERROR: unchanged revision \${revision:0:12}, but HTTPS/readability verification failed" >&2
+  exit 1
 fi
 
 # Refuse a release that refers to assets not yet tracked by GitHub.
@@ -50,31 +76,12 @@ tar -C "$DEST" -czf "$backup" index.html favicon.svg assets
 rsync -a --chmod=Du=rwx,Dgo=rx,Fu=rw,Fgo=r --delay-updates "$SOURCE/index.html" "$SOURCE/favicon.svg" "$DEST/"
 rsync -a --chmod=Du=rwx,Dgo=rx,Fu=rw,Fgo=r --delay-updates "$SOURCE/assets/" "$DEST/assets/"
 
-# Fix existing retained asset modes as well as newly copied files.
-chmod 755 "$DEST" "$DEST/assets"
-chmod 644 "$DEST/index.html" "$DEST/favicon.svg"
-find "$DEST/assets" -type d -exec chmod 755 {} +
-find "$DEST/assets" -type f -exec chmod 644 {} +
-
-# HTTPS is the real entry point. Do not accept an HTTP-to-HTTPS 301 as success.
-verify_site() {
-  runuser -u www-data -- test -r "$DEST/index.html"
-  runuser -u www-data -- test -r "$DEST/assets/format-square.png"
-  local status
-  status="$(curl --silent --show-error --max-time 15 \
-    --resolve matrix.fixtile.ru:443:127.0.0.1 \
-    --output /dev/null --write-out '%{http_code}' \
-    'https://matrix.fixtile.ru/')" || return 1
-  [[ "$status" == "200" ]]
-}
+repair_permissions
 
 if ! verify_site; then
   echo "Deployment verification failed; restoring backup $backup" >&2
   tar -C "$DEST" -xzf "$backup"
-  chmod 755 "$DEST" "$DEST/assets"
-  chmod 644 "$DEST/index.html" "$DEST/favicon.svg"
-  find "$DEST/assets" -type d -exec chmod 755 {} +
-  find "$DEST/assets" -type f -exec chmod 644 {} +
+  repair_permissions
   verify_site || echo "WARNING: restored backup still fails HTTPS check" >&2
   exit 1
 fi
