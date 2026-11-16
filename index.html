@@ -115,6 +115,11 @@
     .fake-tile.rect{aspect-ratio:2/1;width:74%;transform:translate(-50%,-50%) rotate(8deg) skewY(-3deg)}
     
 
+    /* SVG-first previews; replace with decoded PNG only when ready. */
+    .format-media img{grid-area:1/1}
+    .format-media .format-png{opacity:0;pointer-events:none;transition:opacity .35s ease,transform .45s cubic-bezier(.2,.75,.25,1)}
+    .format-media .format-png.is-ready{opacity:1}
+
     /* Systems */
     .systems{background:#fff;padding:88px 0 94px}
     .systems-top{display:grid;grid-template-columns:.75fr 1.25fr;gap:52px;align-items:end;margin-bottom:28px}
@@ -429,15 +434,15 @@
         </div>
         <div class="formats-grid reveal">
           <article class="format-card">
-            <div class="format-media"><img src="assets/format-square.png" alt="Квадратная плитка FIXTILE MATRIX" loading="lazy" /></div>
+            <div class="format-media" data-png-src="assets/format-square.png"><img src="assets/format-square.svg" alt="Квадратная плитка FIXTILE MATRIX" loading="lazy" decoding="async" /></div>
             <div class="format-info"><b>Квадрат</b><span>200 × 200 × 15 мм</span></div>
           </article>
           <article class="format-card">
-            <div class="format-media"><img src="assets/format-rectangle.png" alt="Прямоугольная плитка FIXTILE MATRIX" loading="lazy" /></div>
+            <div class="format-media" data-png-src="assets/format-rectangle.png"><img src="assets/format-rectangle.svg" alt="Прямоугольная плитка FIXTILE MATRIX" loading="lazy" decoding="async" /></div>
             <div class="format-info"><b>Прямоугольник</b><span>200 × 100 × 15 мм</span></div>
           </article>
           <article class="format-card">
-            <div class="format-media"><img src="assets/format-hex.png" alt="Шестигранная плитка FIXTILE MATRIX" loading="lazy" /></div>
+            <div class="format-media" data-png-src="assets/format-hex.png"><img src="assets/format-hex.svg" alt="Шестигранная плитка FIXTILE MATRIX" loading="lazy" decoding="async" /></div>
             <div class="format-info"><b>HEX</b><span>125 × 108 мм</span></div>
           </article>
         </div>
@@ -538,6 +543,47 @@
   </main>
 
   <script>
+    // The SVG is displayed by HTML without waiting for JavaScript.
+    // Fetch and decode each detailed PNG once its SVG preview has loaded.
+    document.querySelectorAll('.format-media[data-png-src]').forEach(media => {
+      const svg = media.querySelector('img');
+      if (!svg) return;
+
+      let requested = false;
+      const upgradeToPng = () => {
+        if (requested) return;
+        requested = true;
+
+        const png = new Image();
+        png.className = 'format-png';
+        png.alt = '';
+        png.decoding = 'async';
+        png.setAttribute('aria-hidden', 'true');
+
+        const reveal = () => {
+          media.appendChild(png);
+          requestAnimationFrame(() => {
+            requestAnimationFrame(() => png.classList.add('is-ready'));
+          });
+        };
+
+        // Keep SVG on screen if the PNG is unavailable or cannot decode.
+        if (typeof png.decode === 'function') {
+          png.src = media.dataset.pngSrc;
+          png.decode().then(reveal).catch(() => {});
+        } else {
+          png.addEventListener('load', reveal, {once:true});
+          png.src = media.dataset.pngSrc;
+        }
+      };
+
+      if (svg.complete) upgradeToPng();
+      else {
+        svg.addEventListener('load', upgradeToPng, {once:true});
+        svg.addEventListener('error', upgradeToPng, {once:true});
+      }
+    });
+
     const layers = {
       classic:[
         ['Плитка FIXTILE MATRIX','кислотоупорная промышленная керамика'],
